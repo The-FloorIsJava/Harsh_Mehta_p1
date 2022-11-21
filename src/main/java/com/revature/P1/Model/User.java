@@ -1,14 +1,16 @@
-public class Login {
+package src.main.java.com.revature.P1.Model;
+
+public class User {
 
         private String userName;
         private String password;
         private String position;
 
-        public Login(String userName, String password , String position) {
+        public User(String userName, String password , String position) {
 
             this.userName = userName;
             this.password = password;
-            this.position = position;
+            this.position = "employee";
         }
 
         public String getUserName(){
@@ -51,9 +53,13 @@ public class Login {
 
         @Override
         public String toString() {
-            return "User Name : " + this.userName+"\n" + "Password : " + this.password+"\n" + "Position : " + this.position+"\n";
-
+            return "UserTable{" +
+                    "User Name=" + userName +
+                    ", Password='" + password + '\'' +
+                    ", Position=" + position +
+                    '}';
         }
+
 
 
 }
