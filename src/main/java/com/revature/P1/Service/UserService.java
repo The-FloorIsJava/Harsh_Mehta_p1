@@ -1,80 +1,66 @@
 package com.revature.P1.Service;
 
+import com.revature.P1.DAO.UserDAO;
 import com.revature.P1.Model.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserService {
-    List<User> userList;
 
 
+    private User sessionUser = null;
 
-    public UserService(){
-        userList = new ArrayList<>();
+    private UserDAO userDAO;
 
+    public UserService(UserDAO userDAO){
+        this.userDAO = userDAO;
     }
+    public User addUser(User user){
+        List<User> users = userDAO.findAll();
+        List<String> userNames = new ArrayList<>();
+        boolean isUnique;
 
-    public void addUser(String userName, String password, String position){
-        User newUser = new User(userName, password, position);
-        userList.add(newUser);
-    }
-//    overloaded method (method with the same name but different parameters)
-    public void addUser(User user){
-        userList.add(user);
-    }
-
-    public User getUserN(String userName){
-        for(int i = 0; i < userList.size(); i++){
-            User c = userList.get(i);
-            if(c.getUserName().equals(userName)){
-                return userList.get(i);
-            }
+        for (int i = 0; i<users.size(); i++){
+            userNames.add(users.get(i).getUserName());
         }
+        if (userNames.contains(user.getUserName())){
+            isUnique = false;
+        } else {
+            isUnique = true;
+        }
+
+        if (isUnique){
+            return userDAO.create(user);
+        } else {
+            return null;
+        }
+    }
+
+    public User getUser(User user){
         return null;
     }
 
-    public void removeUser(String userName){
-        for(int i = 0; i < userList.size(); i++){
-            User c = userList.get(i);
-            if(c.getUserName().equals(userName)){
-                userList.remove(i);
-            }
-        }
+    public void removeUser( String userName){
+
     }
 
-    public String existingUser(String userName) {
-        for(int i = 0; i < userList.size(); i++) {
-            User u = userList.get(i);
-            if (u.getUserName().equals(userName)) {
-                return "Existing User";
-            }
-        }
-        return userName;
+    public List<User> getAllUsers(){
+        return userDAO.findAll();
     }
 
-    public User getP(String password){
-        for(int i = 0; i < userList.size(); i++){
-            User c = userList.get(i);
-            if(c.getPassword().equals(password)){
-                return userList.get(i);
-            }
-        }
-        return null;
-    }
-
-    public void removeP(String password){
-        for(int i = 0; i < userList.size(); i++){
-            User c = userList.get(i);
-            if(c.getPassword().equals(password)){
-                userList.remove(i);
-            }
-        }
-    }
-    public List<User> getAllUsers() {
-        return userList;
+    public void login(String userName, String password){
+        //implement with dao
+        sessionUser = userDAO.loginCheck(userName, password);
     }
 
 
 
+    public void logout(){
+        this.sessionUser = null;
+    }
+
+    public User getSessionUser(){
+        return this.sessionUser;
+    }
 }

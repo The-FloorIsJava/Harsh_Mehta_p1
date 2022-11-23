@@ -1,6 +1,6 @@
 package com.revature.P1.Util;
 
-import com.revature.P1.Handler.UserController;
+import com.revature.P1.Controller.UserController;
 
 import io.javalin.Javalin;
 

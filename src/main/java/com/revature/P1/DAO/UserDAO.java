@@ -1,4 +1,4 @@
-package com.revature.P1.Dao;
+package com.revature.P1.DAO;
 
 import com.revature.P1.Model.User;
 import com.revature.P1.Util.ConnectionFactory;
@@ -18,7 +18,7 @@ import java.util.List;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class UserDao implements Crudable<User> {
+public class UserDAO implements Crudable<User> {
 
 
     @Override
@@ -28,7 +28,7 @@ public class UserDao implements Crudable<User> {
 
 
 
-            String sql = "insert into user (user_name, password, position) values (?, ?, ?)";
+            String sql = "insert into user_table (user_name, password, position) values (?, ?, ?)";
 
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -55,7 +55,7 @@ public class UserDao implements Crudable<User> {
         try(Connection connection = ConnectionFactory.getConnectionFactory().getConnection()){
             List<User> users = new ArrayList<>();
 
-            String sql = "select * from user";
+            String sql = "select * from user_table";
 
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
