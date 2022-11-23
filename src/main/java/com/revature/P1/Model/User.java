@@ -1,4 +1,4 @@
-package src.main.java.com.revature.P1.Model;
+package com.revature.P1.Model;
 
 public class User {
 
@@ -13,7 +13,11 @@ public class User {
             this.position = "employee";
         }
 
-        public String getUserName(){
+    public User() {
+
+    }
+
+    public String getUserName(){
             return userName;
         }
 

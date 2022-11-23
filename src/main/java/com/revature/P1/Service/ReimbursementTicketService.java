@@ -1,15 +1,15 @@
-package src.main.java.com.revature.P1.Service;
+package com.revature.P1.Service;
 
-import src.main.java.com.revature.P1.Model.ReimbursementTicket;
+import com.revature.P1.Model.ReimbursementTicket;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SubmitTicket {
+public class ReimbursementTicketService {
 
     List<ReimbursementTicket> reimbursementTicketList;
 
-    public SubmitTicket(){
+    public ReimbursementTicketService(){
         reimbursementTicketList = new ArrayList<>();
     }
 

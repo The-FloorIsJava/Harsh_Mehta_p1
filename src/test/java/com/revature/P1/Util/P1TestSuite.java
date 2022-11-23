@@ -1,13 +1,12 @@
 package com.revature.P1.Util;
 
-import com.revature.P1.Util.ConnectionFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class ConnectionFactoryTestSuite {
+public class P1TestSuite {
 
     @Test
     public void test_getConnection_returnValidConnection_givenProvidedCredentialsAreCorrect(){

@@ -1,7 +1,7 @@
-package src.main.java.com.revature.P1.Util;
+package com.revature.P1.Util;
 
-import com.revature.CustomerTracker.Controller.CustomerController;
-import com.revature.CustomerTracker.Controller.MenuItemController;
+import com.revature.P1.Handler.UserController;
+
 import io.javalin.Javalin;
 
 public class Application {
@@ -9,9 +9,9 @@ public class Application {
 
         Javalin app = Javalin.create().start(8080);
 
-        new CustomerController(app).customerEndpoint();
-        MenuItemController menuItemController = new MenuItemController();
+        new UserController(app).userEndpoint();
+      //  MenuItemController menuItemController = new MenuItemController();
 
-        menuItemController.menuItemEndpoint(app);
+      //  menuItemController.menuItemEndpoint(app);
     }
 }

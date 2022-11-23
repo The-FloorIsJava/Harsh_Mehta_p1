@@ -1,16 +1,16 @@
-package src.main.java.com.revature.P1.Service;
+package com.revature.P1.Service;
 
-import src.main.java.com.revature.P1.Model.User;
+import com.revature.P1.Model.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Login {
+public class UserService {
     List<User> userList;
 
 
 
-    public Login(){
+    public UserService(){
         userList = new ArrayList<>();
 
     }
@@ -43,10 +43,10 @@ public class Login {
         }
     }
 
-    public String ExistingUser(String userName) {
+    public String existingUser(String userName) {
         for(int i = 0; i < userList.size(); i++) {
             User u = userList.get(i);
-            if (u.getUserN().equals(userName)) {
+            if (u.getUserName().equals(userName)) {
                 return "Existing User";
             }
         }

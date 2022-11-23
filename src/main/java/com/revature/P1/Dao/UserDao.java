@@ -1,8 +1,9 @@
-package src.main.java.com.revature.P1.Dao;
+package com.revature.P1.Dao;
 
 import com.revature.P1.Model.User;
 import com.revature.P1.Util.ConnectionFactory;
-import com.revature.P1.Util.Exception.InvalidUserInputException;
+
+import com.revature.P1.Util.Exceptions.InvalidUserInputException;
 import com.revature.P1.Util.Interface.Crudable;
 
 import java.sql.Connection;
@@ -11,20 +12,35 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class UserDAO implements Crudable<User, String> {
+
+
+
+import java.sql.*;
+import java.util.ArrayList;
+
+public class UserDao implements Crudable<User> {
+
 
     @Override
-    public User insert(User newUser) {
+    public User create(User newUser) {
+
         try (Connection connection = ConnectionFactory.getConnectionFactory().getConnection()) {
 
-            String sql = "insert into user_table(\"username\", \"password\") values (?, ?)";
+
+
+            String sql = "insert into user (user_name, password, position) values (?, ?, ?)";
 
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
             preparedStatement.setString(1, newUser.getUserName());
             preparedStatement.setString(2, newUser.getPassword());
+            preparedStatement.setString(3, newUser.getPosition());
 
-            if (preparedStatement.executeUpdate() == 0) throw new SQLException("User was not created.");
+            int checkInsert = preparedStatement.executeUpdate();
 
+            if (checkInsert == 0) {
+                throw new RuntimeException("User was not added to the database");
+            }
             return newUser;
 
         } catch (SQLException e) {
@@ -33,49 +49,76 @@ public class UserDAO implements Crudable<User, String> {
         }
     }
 
+
     @Override
-    public List<User> selectAll() {
+    public List<User> findAll() {
+        try(Connection connection = ConnectionFactory.getConnectionFactory().getConnection()){
+            List<User> users = new ArrayList<>();
+
+            String sql = "select * from user";
+
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            while(resultSet.next()){
+                users.add(convertSqlInfoToUser(resultSet));
+            }
+
+            return users;
+
+        } catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public User findByUserName(String userName) {
         return null;
     }
 
     @Override
-    public User selectByField(String field, String value) {
-        return null;
-    }
-
-    @Override
-    public boolean update(User updatedObject) {
+    public boolean update(User updatedUser) {
         return false;
     }
 
     @Override
-    public boolean deleteByField(String field, String value) {
+    public boolean delete(String EmployeeEmail) {
         return false;
     }
 
-    public User loginCheck(String username, String password) {
-        try (Connection connection = ConnectionFactory.getConnectionFactory().getConnection()) {
-            String sql = "select * from user_table where \"username\" = ? and \"password\" = ?;";
+    public User loginCheck(String userName, String password){
+
+        try(Connection connection = ConnectionFactory.getConnectionFactory().getConnection()){
+
+            String sql = "select * from employee where user_name = ? and password = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, username);
+            preparedStatement.setString(1, userName);
             preparedStatement.setString(2, password);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (!resultSet.next()) throw new InvalidUserInputException("Incorrect username or password.");
+            if (!resultSet.next()){
+                throw new InvalidUserInputException("Entered information for " + userName + " was incorrect. Please try again.");
+            }
+            return convertSqlInfoToUser(resultSet);
 
-            User user = new User();
 
-            user.setUserName(resultSet.getString("username"));
-            user.setPassword(resultSet.getString("password"));
-            user.setPosition(Position.valueOf(resultSet.getString("position")));
-
-            return user;
-
-        } catch (SQLException e) {
+        } catch (SQLException e){
             e.printStackTrace();
             return null;
         }
+
+    }
+
+    private User convertSqlInfoToUser(ResultSet resultSet) throws SQLException {
+        User user = new User();
+
+        user.setUserName(resultSet.getString("user_name"));
+        user.setPassword(resultSet.getString("password"));
+        user.setPosition(resultSet.getString("position"));
+
+        return user;
     }
 }

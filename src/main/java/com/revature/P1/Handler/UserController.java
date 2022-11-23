@@ -1,22 +1,19 @@
-package src.main.java.com.revature.P1.Handler;
+package com.revature.P1.Handler;
 
 import com.revature.P1.Model.User;
-import com.revature.P1.Model.ReimbursementTicket;
-import com.revature.P1.Service.Login;
+import com.revature.P1.Service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
-import src.main.java.com.revature.P1.Model.User;
-import src.main.java.com.revature.P1.Service.Login;
 
 import java.util.List;
 
 public class UserController {
-    Login login;
+    UserService userService;
     Javalin app;
     public UserController(Javalin app){
-        login = new Login();
+        userService = new UserService();
         this.app = app;
     }
     public void userEndpoint(){
@@ -36,7 +33,7 @@ public class UserController {
      */
     private void getSpecificUserHandler(Context context) {
         String name = context.pathParam("name");
-        User user = login.getUser(name);
+        User user = userService.getUser(name);
         context.json(user);
     }
 
@@ -46,7 +43,7 @@ public class UserController {
      * @param context
      */
     private void getAllUsersHandler(Context context) {
-        List<User> allUsers = login.getAllUsers();
+        List<User> allUsers = userService.getAllUsers();
 //        similar as context.result, but the content type is json rather than text.
         context.json(allUsers);
     }
@@ -59,7 +56,7 @@ public class UserController {
     private void postUserHandler(Context context) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         User user = mapper.readValue(context.body(), User.class);
-        login.addUser(user);
+        userService.addUser(user);
         context.json(user);
     }
 
