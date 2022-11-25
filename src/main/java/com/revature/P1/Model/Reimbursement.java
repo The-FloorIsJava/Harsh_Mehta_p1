@@ -1,8 +1,8 @@
 package com.revature.P1.Model;
 
-import java.util.Objects;
+import java.util.List;
 
-public class ReimbursementTicket {
+public class Reimbursement {
 
     private String userName;
     private int ticketId;
@@ -11,7 +11,7 @@ public class ReimbursementTicket {
     private String description;
     private double amount ;
 
-    public ReimbursementTicket(String userName,int ticketId,int ticketNumbers, String status, String description,double amount) {
+    public Reimbursement() {
 
         this.userName = userName;
         this.ticketId = ticketId;
@@ -47,6 +47,14 @@ public class ReimbursementTicket {
         this.ticketNumbers = ticketNumbers;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -66,7 +74,7 @@ public class ReimbursementTicket {
 
 
 
-    public boolean isValidAmount(double amount) {
+   /* public boolean isValidAmount(double amount) {
         if (amount == 0) {
             return false;
         }
@@ -79,7 +87,7 @@ public class ReimbursementTicket {
         }
         return this.description != null && this.description.equals(description);
     }
-
+*/
     @Override
     public String toString() {
         return "ReimbursementTicket{" +

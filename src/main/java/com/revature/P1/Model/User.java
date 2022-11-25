@@ -41,19 +41,20 @@ public class User {
             this.position = position;
         }
 
-        public boolean isValidUserName(String userName) {
-            if (userName == null) {
-                return false;
-            }
-            return this.userName != null && this.userName.equals(userName);
-        }
-
-        public boolean isValidPassword(String password) {
-            if (password == null) {
-                return false;
-            }
-            return this.password != null && this.password.equals(password);
-        }
+//        public boolean isValidUserName(String userName) {
+//            if (userName == null) {
+//                return false;
+//            }
+//            return this.userName != null && this.userName.equals(userName);
+//        }
+//
+//        public boolean isValidPassword(String password) {
+//            if (password == null) {
+//                return false;
+//            }
+//            return this.password != null && this.password.equals(password);
+//        }
+//
 
         @Override
         public String toString() {

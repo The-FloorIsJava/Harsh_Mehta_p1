@@ -7,7 +7,7 @@ import io.javalin.Javalin;
 public class Application {
     public static void main(String[] args) {
 
-        Javalin app = Javalin.create().start(8080);
+        Javalin app = Javalin.create().start(8081);
 
         new UserController(app).userEndpoint();
       //  MenuItemController menuItemController = new MenuItemController();

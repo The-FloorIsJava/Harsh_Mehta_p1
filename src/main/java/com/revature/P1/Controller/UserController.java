@@ -35,7 +35,7 @@ public class UserController {
     }
     private void helloHandler(Context context) {
 
-        context.result("Welcome to the Galaxy");
+        context.result("Welcome to the Galaxy!");
     }
     private void postUserHandler(Context context) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
@@ -56,11 +56,11 @@ public class UserController {
     private void logoutHandler(Context context) {
         String userName = userService.getSessionUser().getUserName();
         userService.logout();
-        context.json(userName + " is now logged out");
+        context.json(userName + " has now logged out");
     }
     private void getAllUserHandler(Context context) {
-        List<User> allEmployees = userService.getAllUsers();
-        context.json(allEmployees);
+        List<User> allUsers = userService.getAllUsers();
+        context.json(allUsers);
     }
 
 

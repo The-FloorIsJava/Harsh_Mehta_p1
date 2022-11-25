@@ -83,7 +83,7 @@ public class UserDAO implements Crudable<User> {
     }
 
     @Override
-    public boolean delete(String EmployeeEmail) {
+    public boolean delete(String userName) {
         return false;
     }
 
@@ -91,7 +91,7 @@ public class UserDAO implements Crudable<User> {
 
         try(Connection connection = ConnectionFactory.getConnectionFactory().getConnection()){
 
-            String sql = "select * from employee where user_name = ? and password = ?";
+            String sql = "select * from user_table where user_name = ? and password = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setString(1, userName);
