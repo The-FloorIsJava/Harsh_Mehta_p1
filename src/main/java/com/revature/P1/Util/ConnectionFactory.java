@@ -30,7 +30,7 @@ public class ConnectionFactory {
         }
         */
         try {
-            properties.load(new FileReader("D:\\Revature Necessary\\Training\\Harsh_Mehta_p1-main\\Harsh_Mehta_p1-main\\src\\main\\resources\\db.properties"));
+            properties.load(new FileReader("src/main/resources/db.properties"));
         } catch (IOException e) {
             e.printStackTrace();
         }

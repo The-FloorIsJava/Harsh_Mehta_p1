@@ -1,7 +1,5 @@
 package com.revature.P1.Model;
 
-import java.util.List;
-
 public class Reimbursement {
 
     private String userName;

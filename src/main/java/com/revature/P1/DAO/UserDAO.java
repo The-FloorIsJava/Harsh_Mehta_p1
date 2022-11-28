@@ -37,9 +37,9 @@ public class UserDAO implements Crudable<User> {
             preparedStatement.setString(2, newUser.getPassword());
             preparedStatement.setString(3, newUser.getPosition());
 
-            int checkInsert = preparedStatement.executeUpdate();
+            int verifyInsert = preparedStatement.executeUpdate();
 
-            if (checkInsert == 0) {
+            if (verifyInsert == 0) {
                 throw new RuntimeException("User was not added to the database");
             }
             return newUser;

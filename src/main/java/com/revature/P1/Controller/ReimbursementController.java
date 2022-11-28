@@ -19,8 +19,8 @@ public class ReimbursementController {
     String noManager = "not a manager";
 
     Javalin app;
-    public ReimbursementController(Javalin app){
-        this.userService = new UserService(new UserDAO());
+    public ReimbursementController(Javalin app, UserService userService){
+        this.userService = userService;
         this.reimbursementService = new ReimbursementService(new ReimbursementDAO());
         this.app = app;
     }
@@ -91,6 +91,8 @@ public class ReimbursementController {
         reimbursementService.addRequest(reimbursement);
         context.json(reimbursement);
     }
+
+
     private void getOwnRequests(Context context) {
 
         String name = context.pathParam("userName");

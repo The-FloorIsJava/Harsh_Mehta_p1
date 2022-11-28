@@ -16,16 +16,18 @@ public class ReimbursementDAO implements Crudable<Reimbursement> {
 
         try(Connection connection = ConnectionFactory.getConnectionFactory().getConnection()){
 
-            String sql = "insert into reimbursement_ticket(amount, description, user_name) values (?, ?, ?)";
+            String sql = "insert into reimbursement_ticket(user_name, ticket_id, status, description, amount) values (?, ?, ?, ?, ?)";
 
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setDouble(1, newReimbursement.getAmount());
-            preparedStatement.setString(2, newReimbursement.getDescription());
-            preparedStatement.setString(3, newReimbursement.getUserName());
+            preparedStatement.setString(1, newReimbursement.getUserName());
+            preparedStatement.setDouble(2, newReimbursement.getTicketId());
+            preparedStatement.setString(3, newReimbursement.getStatus());
+            preparedStatement.setString(4, newReimbursement.getDescription());
+            preparedStatement.setDouble(5, newReimbursement.getAmount());
 
-            int checkInsert = preparedStatement.executeUpdate();
-            if (checkInsert == 0){
+            int verifyInsert = preparedStatement.executeUpdate();
+            if (verifyInsert == 0){
                 throw  new RuntimeException("Reimbursement was not added");
             }
             return newReimbursement;

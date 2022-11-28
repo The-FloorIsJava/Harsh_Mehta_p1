@@ -19,8 +19,8 @@ public class UserController {
         this.userService = userService;
     }
 
-    public UserController(Javalin app) {
-        userService = new UserService(new UserDAO());
+    public UserController(Javalin app, UserService userService) {
+        this.userService = userService;
         this.app = app;
     }
 
