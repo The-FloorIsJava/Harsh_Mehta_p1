@@ -1,5 +1,6 @@
 package com.revature.P1.DAO;
 
+import com.revature.P1.Model.Reimbursement;
 import com.revature.P1.Model.User;
 import com.revature.P1.Util.ConnectionFactory;
 
@@ -78,12 +79,22 @@ public class UserDAO implements Crudable<User> {
     }
 
     @Override
+    public Reimbursement findById(int ticketId) {
+        return null;
+    }
+
+    @Override
     public boolean update(User updatedUser) {
         return false;
     }
 
     @Override
     public boolean delete(String userName) {
+        return false;
+    }
+
+    @Override
+    public boolean delete(int ticketId) {
         return false;
     }
 

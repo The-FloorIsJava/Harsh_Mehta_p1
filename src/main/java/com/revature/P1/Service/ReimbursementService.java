@@ -1,31 +1,55 @@
 package com.revature.P1.Service;
 
+import com.revature.P1.DAO.ReimbursementDAO;
+import com.revature.P1.Model.User;
 import com.revature.P1.Model.Reimbursement;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ReimbursementService {
+public class ReimbursementService extends User {
 
-    List<Reimbursement> reimbursementList;
 
-    public ReimbursementService(){
-        reimbursementList = new ArrayList<>();
+
+    private final ReimbursementDAO reimbursementDAO;
+
+    public ReimbursementService(ReimbursementDAO reimbursementDAO){
+        this.reimbursementDAO = reimbursementDAO;
+    }
+    User myUser;
+
+    List<Reimbursement> reimbursementService;
+
+    public void addRequest(Reimbursement reimbursement){
+        reimbursementDAO.create(reimbursement);
     }
 
-    public void addReimbursementTicket(String userName, int ticketId, int ticketNumbers, String status, String description, double amount){
-        Reimbursement newReimbursement = new Reimbursement();
-        reimbursementList.add(newReimbursement);
+
+    public Reimbursement getReimbursement(int id){
+
+        return reimbursementDAO.findById(id);
     }
-    //    overloaded method (method with the same name but different parameters)
-    public void addReimbursementTicket(Reimbursement reimbursement){
-        reimbursementList.add(reimbursement);
+    public Reimbursement getReimbursement(String name){
+
+        return reimbursementDAO.findPersonalRequests(name);
+    }
+
+    public Reimbursement managerApproval(int id) {
+        return reimbursementDAO.approve(id);
+    }
+
+    public Reimbursement managerDenial(int id) {
+        return reimbursementDAO.deny(id);
+    }
+
+    public List<Reimbursement> getAllRequests(){
+
+        return reimbursementDAO.findAll();
+    }
+
+    public List<Reimbursement> getPendingRequests(){
+        return reimbursementDAO.findAllPending();
     }
 
 
-
-    public List<Reimbursement> submitAllTickets() {
-        return reimbursementList;
-    }
 
 }

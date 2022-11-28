@@ -51,7 +51,7 @@ public class UserService {
 
     public void login(String userName, String password){
         //implement with dao
-        sessionUser = userDAO.loginCheck(userName, password);
+        this.sessionUser = userDAO.loginCheck(userName, password);
     }
 
 

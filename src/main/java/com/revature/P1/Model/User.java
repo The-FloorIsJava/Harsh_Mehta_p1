@@ -10,15 +10,19 @@ public class User {
 
             this.userName = userName;
             this.password = password;
-            this.position = "employee";
+            this.position = position;
         }
+
+    public User(String userName, String password) {
+            this(userName,password,"employee");
+    }
 
     public User() {
 
     }
 
     public String getUserName(){
-            return userName;
+            return this.userName;
         }
 
         public void setUserName(String userName){
