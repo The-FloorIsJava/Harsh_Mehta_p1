@@ -19,8 +19,6 @@ public class Application {
 
         new UserController(app, userService).userEndpoint();
         new ReimbursementController(app, userService).reimbursementEndpoint();
-      //  MenuItemController menuItemController = new MenuItemController();
 
-      //  menuItemController.menuItemEndpoint(app);
     }
 }

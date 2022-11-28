@@ -94,12 +94,10 @@ public class ReimbursementController {
 
 
     private void getOwnRequests(Context context) {
-
         String name = context.pathParam("userName");
-
-        context.json(reimbursementService.getReimbursement(name));
-
-
+        reimbursementService.getReimbursement(name);
+        List<Reimbursement> reimbursement = reimbursementService.getReimbursement(name);
+        context.json(reimbursement);
     }
 
 

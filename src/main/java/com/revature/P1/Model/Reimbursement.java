@@ -4,7 +4,7 @@ public class Reimbursement {
 
     private String userName;
     private int ticketId;
-    private int ticketNumbers;
+
     private String status;
     private String description;
     private double amount ;
@@ -13,7 +13,7 @@ public class Reimbursement {
 
         this.userName = userName;
         this.ticketId = ticketId;
-        this.ticketNumbers = ticketNumbers;
+
         this.status = "pending";
         this.description = description;
         this.amount = amount;
@@ -37,13 +37,6 @@ public class Reimbursement {
         this.ticketId = ticketId;
     }
 
-    public int getTicketNumbers() {
-        return ticketNumbers;
-    }
-
-    public void setTicketNumbers(int ticketNumbers) {
-        this.ticketNumbers = ticketNumbers;
-    }
 
     public String getStatus() {
         return status;
@@ -91,7 +84,6 @@ public class Reimbursement {
         return "ReimbursementTicket{" +
                 "User Name=" + userName +
                 "Ticket Id=" + ticketId +
-                "Ticket Numbers=" + ticketNumbers +
                 ", Status='" + status + '\'' +
                 ", Description=" + description +
                 ", Amount=" + amount +
