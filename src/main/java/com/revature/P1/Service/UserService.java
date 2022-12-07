@@ -17,13 +17,11 @@ public class UserService {
         this.userDAO = userDAO;
     }
     public User addUser(User user){
-        List<User> users = userDAO.findAll();
+
         List<String> userNames = new ArrayList<>();
         boolean isUnique;
 
-        for (int i = 0; i<users.size(); i++){
-            userNames.add(users.get(i).getUserName());
-        }
+
         if (userNames.contains(user.getUserName())){
             isUnique = false;
         } else {
@@ -45,9 +43,7 @@ public class UserService {
 
     }
 
-    public List<User> getAllUsers(){
-        return userDAO.findAll();
-    }
+
 
     public void login(String userName, String password){
         //implement with dao

@@ -206,8 +206,6 @@ public class ReimbursementDAO implements Crudable<Reimbursement> {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()){
-
-
                 reimbursements.add(convertSqlInfoToReimbursement(resultSet));
 
             }

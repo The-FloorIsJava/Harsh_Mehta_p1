@@ -31,7 +31,7 @@ public class UserController {
         app.post("register", this::postUserHandler);
         app.post("login", this::loginHandler);
         app.delete("logout", this::logoutHandler);
-        app.get("allUsers", this::getAllUserHandler);
+
     }
     private void helloHandler(Context context) {
 
@@ -58,10 +58,7 @@ public class UserController {
         userService.logout();
         context.json(userName + " has now logged out");
     }
-    private void getAllUserHandler(Context context) {
-        List<User> allUsers = userService.getAllUsers();
-        context.json(allUsers);
-    }
+
 
 
 }
