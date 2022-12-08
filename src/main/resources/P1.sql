@@ -4,7 +4,7 @@
 create table user_table(
 user_name varchar(255) primary key,
 password varchar(255)not null,
-position varchar(255) default 'employee'
+position varchar(255)default 'employee'
 );
 
 insert into user_table values ('andrew','and','manager');
@@ -18,17 +18,18 @@ select * from user_table;
 create table reimbursement_ticket(
 user_name varchar(255),
 ticket_id numeric primary key,
-status varchar(255) default 'pending',
+ticket_numbers numeric,
+status varchar(255),default 'pending'
 description varchar (255),
 amount numeric,
 
 foreign key(user_name) references user_table(user_name)
 );
 
-insert into reimbursement_ticket values ('harsh',1,'denied','not reimbursed',500);
-insert into reimbursement_ticket values ('ted',4,'approved','reimbursed',600);
-insert into reimbursement_ticket values ('charles',3,'pending','not reimbursed',800);
-insert into reimbursement_ticket values ('andrew',2,'pending','reimbursed',400);
+insert into reimbursement_ticket values ('harsh',1,4,'denied','not reimbursed',500);
+insert into reimbursement_ticket values ('ted',4,1,'approved','reimbursed',600);
+insert into reimbursement_ticket values ('charles',3,3,'pending','not reimbursed',800);
+insert into reimbursement_ticket values ('andrew',2,2,'pending','reimbursed',400);
 
 select * from reimbursement_ticket;
 

@@ -28,7 +28,7 @@ public class ReimbursementService extends User {
 
         return reimbursementDAO.findById(id);
     }
-    public List<Reimbursement> getReimbursement(String name){
+    public Reimbursement getReimbursement(String name){
 
         return reimbursementDAO.findPersonalRequests(name);
     }
