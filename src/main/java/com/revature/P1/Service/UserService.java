@@ -5,6 +5,8 @@ import com.revature.P1.Model.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 public class UserService {
 
@@ -12,6 +14,8 @@ public class UserService {
     private User sessionUser = null;
 
     private UserDAO userDAO;
+
+    private Logger logger = LogManager.getLogger();
 
     public UserService(UserDAO userDAO){
         this.userDAO = userDAO;
@@ -45,11 +49,15 @@ public class UserService {
 
 
 
-    public void login(String userName, String password){
+    public User login(String userName, String password){
         //implement with dao
-        this.sessionUser = userDAO.loginCheck(userName, password);
-    }
 
+        return userDAO.loginCheck(userName,password);
+
+    }
+    public List<User> getAllUsers() {
+        return userDAO.findAll();
+    }
 
 
     public void logout(){

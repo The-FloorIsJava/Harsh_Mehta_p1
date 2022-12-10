@@ -12,6 +12,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 
 
 
@@ -21,7 +24,7 @@ import java.util.ArrayList;
 
 public class UserDAO implements Crudable<User> {
 
-
+    private Logger logger = LogManager.getLogger();
     @Override
     public User create(User newUser) {
 
@@ -39,12 +42,15 @@ public class UserDAO implements Crudable<User> {
 
             int verifyInsert = preparedStatement.executeUpdate();
 
-            if (verifyInsert == 0) {
-                throw new RuntimeException("User was not added to the database");
+            if(verifyInsert == 0){
+                logger.warn("Information provided was not able to be persisted {}", newUser);
+                throw new RuntimeException("User was not added to database");
             }
+
+            logger.info("New user with info {} was persisted to the database", newUser);
             return newUser;
 
-        } catch (SQLException e) {
+        } catch (SQLException e){
             e.printStackTrace();
             return null;
         }

@@ -18,7 +18,7 @@ select * from user_table;
 create table reimbursement_ticket(
 user_name varchar(255),
 ticket_id numeric primary key,
-ticket_numbers numeric,
+
 status varchar(255),default 'pending'
 description varchar (255),
 amount numeric,
